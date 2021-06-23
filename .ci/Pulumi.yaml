@@ -1,0 +1,3 @@
+name: add-mana-static
+runtime: nodejs
+description: Website for the add mana dapp
