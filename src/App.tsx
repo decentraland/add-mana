@@ -9,8 +9,8 @@ const NETWORK_DATA: {[key: string]: { mana: string, network: string}} = {
   '0x4': { mana: '0xe7fDae84ACaba2A5Ba817B6E6D8A2d415DBFEdbe', network: 'Rinkeby'},
   '0x5': { mana: '0x230fc362413d9e862326c2c7084610a5a2fdf78a', network: 'Goerli'},
   '0x2a': { mana: '0x28bce5263f5d7f4eb7e8c6d5d78275ca455bac63', network: 'Kovan'},
-  '0x137': { mana: '0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4', network: 'Polygon'},
-  '0x8001': { mana: '0x882Da5967c435eA5cC6b09150d55E8304B838f45', network: 'Mumbai'}
+  '0x89': { mana: '0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4', network: 'Polygon'},
+  '0x13881': { mana: '0x882Da5967c435eA5cC6b09150d55E8304B838f45', network: 'Mumbai'}
 }
 
 function App() {
