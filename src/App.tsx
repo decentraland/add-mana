@@ -16,19 +16,25 @@ const NETWORK_DATA: {[key: string]: { mana: string, network: string}} = {
 function App() {
   const [added, setAdded] = useState(false)
   const [network, setNetwork] = useState('Not connected')
+  const [isMetamask, setIsMetamask] = useState(true)
+
 
   useEffect(() => {
     const provider = (window as any).ethereum
-    provider.request({ method: 'eth_requestAccounts'}).then(() => {
-      const network = NETWORK_DATA[provider.chainId] ? NETWORK_DATA[provider.chainId].network : 'unknown'
-      setNetwork(network)
-    })
+    if (provider) {
+      provider.request({ method: 'eth_requestAccounts'}).then(() => {
+        const network = NETWORK_DATA[provider.chainId] ? NETWORK_DATA[provider.chainId].network : 'unknown'
+        setNetwork(network)
+      })
 
-    provider.on('chainChanged', () => {
-      const network = NETWORK_DATA[provider.chainId] ? NETWORK_DATA[provider.chainId].network : 'unknown'
-      setNetwork(network)
-    })
-  })
+      provider.on('chainChanged', () => {
+        const network = NETWORK_DATA[provider.chainId] ? NETWORK_DATA[provider.chainId].network : 'unknown'
+        setNetwork(network)
+      })
+    } else {
+      setIsMetamask(false)
+    }
+  }, [setIsMetamask, setNetwork])
 
 
   const addToken = async () => {
@@ -65,12 +71,15 @@ function App() {
          <i className="mana-icon" />
           Add MANA to Metamask
         </Header>
+        {isMetamask ?
+        <>
         <p className="first-line">Connected network: <b>{network}</b></p>
         <p className="second-line">If you want to add MANA to another network, switch it on Metamask</p>
         <Button onClick={addToken} primary>
           Add MANA Token
         </Button>
         { added ? <p className="success">MANA added succesfully</p> : null }
+        </> : <p className="error">You need to have Metamask installed and connected to use this app</p>}
       </Section>
     </Page>
   );

@@ -49,3 +49,7 @@ p.second-line {
   margin-top: 7px;
   font-weight: 600;
 }
+
+.error {
+  color: var(--primary);
+}
